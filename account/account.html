@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>账户管理</title>
+	<link rel="shortcut icon" href="hexin.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="../css/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../css/icon.css">
+	<link rel="stylesheet" type="text/css" href="../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../css/sm.css">
+</head>
+<body>
+	<div class="select_institution">
+		<span>选择机构</span>
+		<select id="select_inst">
+			
+		</select>
+	</div>
+	<div id="account" class="account">
+		<span class="account-edit">编辑</span>
+		<div class="title">
+			<div class="title-left">
+				<h1></h1>
+				<i class="pencil"></i>
+				<a href="#" class="easyui-linkbutton product-add" data-options="iconCls : 'icon-add'">增加产品</a>
+			</div>
+		</div>
+		<div class="containter">
+			
+		</div>
+		<div class="easyui-dialog dialogCom" id="newAdd" title="新增产品信息">
+    		<div class="new-detail">
+    			<span class="short">产品名称 ：</span>
+    			<span><input class="incommon newName" type="text" name="name"></input></span>
+    		</div>
+    		<div class="new-detail">
+    			<span>产品成立日：</span>
+    			<span><input  class="easyui-datebox newDay" id="day" name="day" data-options="formatter:myformatter,parser:myparser"></input></span>
+    		</div>
+    		<div class="new-detail">
+    			<span class="short">银行资金 ：</span>
+    			<span><input class="incommon bank-funds" type="text"></input></span>
+    		</div>
+    		<div class="new-detail">
+    			<span>资产总份额：</span>
+    			<span><input class="incommon total-funds" type="text"></input></span>
+    		</div>
+		</div>
+		<div class="easyui-dialog dialogCom" id="addCount" title="新增股票信息">
+			<div class="easyui-tabs">
+				<div title="股票">
+					<div class="stock">
+						<span>所属机构：</span>
+						<input type="text" class="comStock" data-id="inst_id" disabled="disabled">
+					</div>
+					<div class="stock">
+						<span>选择券商：</span>
+						<select class="dialog-item">
+							
+						</select>
+					</div>
+					<div class="stock">
+						<span>营业部：</span>
+						<select class="business-item">
+							
+						</select>
+					</div>
+					<div class="stock">
+						<span>营业部资金账号：</span>
+						<input type="text" class="business stock-com" >
+					</div>
+					<div class="stock">
+						<span>交易密码：</span>
+						<input type="password" class="psw stock-com">
+					</div>
+					<div class="stock">
+						<span>通讯密码：</span>
+						<input type="password" class="password">
+					</div>
+					<div class="stock">
+						<span>交易账号名称：</span>
+						<input type="text" class="name stock-com">
+					</div>
+					<div class="stock">
+						<span>动态口令</span>
+						<input type="text" class="command">
+					</div>
+					<div class="stock">
+						<span>备注：</span>
+						<input type="text" class="remark">
+					</div>
+					<div class="operate">
+						<a href="#" class="easyui-linkbutton btn" data-id="stock-ok" data-options="iconCls : 'icon-ok'">确定</a>
+						<a href="#" class="easyui-linkbutton btn" data-id="stock-cancle" >取消</a>
+					</div>
+					<div class="operate-edit hide">
+						<a href="#" class="easyui-linkbutton btn" data-id="stock-edit-ok" data-options="iconCls : 'icon-ok'">确定</a>
+						<a href="#" class="easyui-linkbutton btn" data-id="stock-edit-cancle" >取消</a>
+					</div>
+				</div>
+				<div title="期货">
+					<div class="futures">
+						<span>开户期货公司:</span>
+						<select class="futures-company">
+							
+						</select>
+					</div>
+					<div class="futures">
+						<span>营业部:</span>
+						<select class="futures-business">
+							
+						</select>
+					</div>
+					<div class="futures">
+						<span>期货账号:</span>
+						<input type="text" class="futures-account futures-com">
+					</div>
+					<div class="futures">
+						<span>交易密码:</span>
+						<input type="password" class="futures-psw futures-com">
+					</div>
+					<div class="futures">
+						<span>通讯密码:</span>
+						<input type="password" class="futures-password">
+					</div>
+					<div class="futures">
+						<span>交易账号名称:</span>
+						<input type="text" class="futures-name">
+					</div>
+					<div class="operate">
+						<a href="#" class="easyui-linkbutton btn" data-id="futures-ok" data-options="iconCls : 'icon-ok'">确定</a>
+						<a href="#" class="easyui-linkbutton btn" data-id="futures-cancle" >取消</a>
+					</div>
+					<div class="operate-edit hide">
+						<a href="#" class="easyui-linkbutton btn" data-id="futures-edit-ok" data-options="iconCls : 'icon-ok'">确定</a>
+						<a href="#" class="easyui-linkbutton btn" data-id="futures-edit-cancle" >取消</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="loading" class="loading">
+		<div class="loading-tip">
+			数据正在加载中...
+		</div>
+	</div>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../js/account.js"></script>
+	<script type="text/javascript">
+	function myformatter(date){
+		var y = date.getFullYear();
+		var m = date.getMonth()+1;
+		var d = date.getDate();
+		return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);
+	}
+	function myparser(s){
+		if (!s) return new Date();
+		var ss = (s.split('-'));
+		var y = parseInt(ss[0],10);
+		var m = parseInt(ss[1],10);
+		var d = parseInt(ss[2],10);
+		if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
+			return new Date(y,m-1,d);
+		} else {
+			return new Date();
+		}
+	}
+	</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>权限管理</title>
+	<link rel="shortcut icon" href="hexin.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="../css/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../css/icon.css">
+	<link rel="stylesheet" type="text/css" href="../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../css/sm.css">
+</head>
+<body>
+	<div id="auth">
+		<a href="#" class="easyui-linkbutton" id="confirm">确认修改</a>
+		<span class="tip">独立投顾所分得交易账号为其专有使用，指令交易只能使用未被分配的交易账号进行交易</span>
+		<table id="management"></table>
+	</div>
+	<div class="easyui-dialog dialogCom" id="allocation" title="分配投资账号" style="width: 300px;padding: 10px;" >
+		<div class="all_count">
+			
+		</div>
+	</div>
+	<div class="easyui-dialog dialogCom" id="conTip" title="提示" style="width: 300px;padding: 10px;" >
+		<span>相应交易端账号会被立刻强制下线并要求重新登陆。是否继续?</span>
+	</div>
+	<div id="warning"></div>
+	<div id="loading" class="loading">
+		<div class="loading-tip">
+			数据正在加载中...
+		</div>
+	</div>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../js/auth.js"></script>
+</body>
+</html>

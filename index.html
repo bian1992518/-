@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>私募投研销一体化管理端</title>
+	<link rel="shortcut icon" href="hexin.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="./css/easyui.css">
+	<link rel="stylesheet" type="text/css" href="./css/icon.css">
+	<link rel="stylesheet" type="text/css" href="./css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./css/sm.css">
+</head>
+<body>
+	<div class="easyui-layout" style="height: 100%;" id="layout">
+		<div data-options="region:'north'" style="height:70px;">
+			<img class="logo" src="./images/logo.jpg">
+			<div class="flag">
+				(通道商专用)
+			</div>
+			<div class="username">
+				账号:<span></span>
+				<a href="#" class="signout">退出</a>
+			</div>
+		</div>
+		<div data-options="region:'west',split:true,title:'全部菜单',collapse:false" style="width: 150px;">
+			<div id="siderBar" class="siderBar">
+				<div class="risk-system">
+					
+					<ul>
+						
+					</ul>
+					
+				</div>
+			</div>
+		</div>
+		<div data-options="region:'center',split:true" >
+			<iframe src="risk/riskSet.html" style="width: 100%;height:98%;border: none"></iframe>
+		</div>
+	</div>
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="./js/sider.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		$("#layout").layout("collapse","west");	//默认关闭layout
+		
+	        //获取cookie中的字段名字
+   	        function getCookie(name) { 
+	       		var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+			if(arr=document.cookie.match(reg))
+				return unescape(arr[2]); 
+	                else  
+				return null; 	
+		}; 
+		var username = getCookie("username");
+		var inst_id = getCookie("institution_id");
+		var operator_id = getCookie("operator_id");
+		var Role_Qs = getCookie("Role_Qs");
+		var role_type = getCookie("role_type");
+		var authKey = getCookie("authKey");
+		$(".username span").html(username);
+
+		function loadDom(){
+			var data = {};
+			data.institution_id = inst_id;
+			data.operator_id = operator_id;
+			data.authKey = authKey;
+			$.ajax({
+				url : '/privatelyfund/listOprMenu_operator',
+				data : data,
+				success : function(data){
+					if (data.success == true) {
+						var data = data.data.list;
+						siderRender(data);
+						toggle();
+					};
+				}
+			})
+
+		};
+
+		//判断登陆的是券商还是机构
+		if (!Role_Qs && !role_type) {
+			loadDom();
+		}else if(role_type == "2"){ 		//量化
+			var html = "";
+			$(".flag").show();
+			html += "<span ><li class='disable'><h3>风控管理</h3></li>\
+						<li class='actived' data-href='risk/dhSet.html'>风控设置</li>\
+						<li data-href='risk/riskAllRecode.html'>风控记录</li></span>";
+			$(".risk-system ul").html(html);
+			$("iframe").attr("src","risk/dhSet.html");
+			toggle();
+		}else{							  //投研销
+			var html = "";
+			html += "<span ><li class='disable'><h3>风控管理</h3></li>\
+						<li class='actived' data-href='risk/riskAllSet.html'>机构设置总览</li>\
+						<li data-href='risk/riskAllRecode.html'>风控记录</li></span>\
+						<span ><li class='disable'><h3>报表汇总</h3></li>\
+						<li data-href='asset/asset.html'>多层查看</li></span>\
+						<span ><li class='disable'><h3>交易账号</h3></li>\
+						<li data-href='account/account.html'>账号管理</li></span>\
+						<span ><li class='disable'><h3>权限管理</h3></li>\
+						<li data-href='auth/auth.html'>权限设定</li></span>";
+			$(".risk-system ul").html(html);
+			$("iframe").attr("src","risk/riskAllSet.html");
+			toggle();
+		}
+
+		function siderRender(data){
+			var html = "";
+			var obj = {};
+			for (var i = 0; i < data.length; i++) {
+				if (data[i].operator_name == username) {
+					obj = data[i].operator;
+				};
+			};	
+			if ((obj[2000] ==0) && (obj[2002] == 0) && (obj[2003] == 0) && (obj[2004] == 0) && (obj[2005] == 0)) {
+				alert("您没有任何权限,请重新登录");
+				history.back();
+			}else{
+				html += "<span data-param = " +obj[2003]  + "><li class='disable'><h3>风控系统</h3></li>\
+						<li class='actived' data-href='risk/riskSet.html'>条例设置</li>\
+						<li data-href='risk/riskRecode.html'>风控记录</li></span>\
+						<span data-param = " +obj[2005] + "><li class='disable'><h3>报表汇总</h3></li>\
+						<li data-href='asset/asset.html'>多层查看</li></span>\
+						<span data-param = " +obj[2002] + "><li class='disable'><h3>交易账号</h3></li>\
+						<li data-href='account/account.html'>账号管理</li></span>\
+						<span data-param = " +obj[2000] + "><li class='disable'><h3>权限管理</h3></li>\
+						<li data-href='auth/auth.html'>权限设定</li></span>";
+			}
+			$(".risk-system ul").html(html);
+		};
+
+		function toggle(){
+			var span = $(".risk-system ul").find("span");
+			span.each(function(index, el) {
+				if ($(this).data("param") == 0) {
+					$(this).remove();
+				};
+			});
+			var oLis = $(".risk-system").find("li").not($(".disable"));
+			oLis.on("click",function(){
+				$("#layout").layout("collapse","west");
+				var item = $(this);
+				var href = item.data("href");
+				$("iframe").attr("src",href);
+				$(this).addClass("actived").siblings().removeClass("actived").parent()
+					   .siblings().find("li").removeClass("actived");
+			})
+		}
+
+	})
+	</script>
+</body>
+</html>

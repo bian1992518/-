@@ -1,0 +1,566 @@
+/*风控系统*/
+.username{
+	float: right;
+	height: 68px;
+	line-height: 68px;
+	padding-right: 10px;
+}
+.risk_ctl{
+	margin: 10px;
+}
+.risk_detail{
+	background: url("../css/icons/st-bg.jpg") left center no-repeat;
+	display: inline-block;
+	padding: 5px 10px;
+	height: 36px;
+	line-height: 36px;
+}
+.risk_operate{
+	display: inline-block;
+	margin-left: 20px;
+}
+.logo{
+	float: left;
+}
+.flag{
+	font-size: 20px;
+	color: #556F8A;
+	float: left;
+    line-height: 64px;
+    font-style: italic;
+    display: none;
+}
+#dbRisk td{
+	word-wrap: break-word;
+	word-break : break-all;
+}
+.mask{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	background-color: #000;
+	opacity: 0.1;
+	filter:alpha(opacity=10);
+	display: none;
+}
+.risk-setting input{
+	vertical-align: middle;
+	margin-right: 10px;
+}
+.risk-setting .checkbox{
+	margin-left: 2px;
+	margin-right: 5px;
+}
+.select-unit{
+	width: 60px;
+    vertical-align: middle;
+}
+.risk-setting .com-remark{
+	padding: 2px;
+	border: 1px solid #b2c7c2;
+	width: 212px;
+	margin-right: 0px;
+}
+.risk-operate{
+	border: 1px solid #afbccd;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	padding: 5px;
+	margin: 10px 0;
+}
+.risk-setting .list-item{
+	width: 44px;
+	border: 1px solid #b2c7c2;
+	padding: 2px;
+	margin-right: 0px;
+}
+.risk-operate .com-form{
+	overflow: hidden;
+	margin: 10px 0;
+}
+.risk-operate .com-form>div{
+	float: left;
+	width: 50%;
+}
+.select-range{
+	width: 90px;
+	height: 20px;
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+}
+.select-value{
+	/* position: absolute; */
+	width: 98px;
+	left: 0px;
+	top: -2px;
+	border: 1px solid #b2c7c2;
+	padding: 2px 6px;
+	cursor: pointer;
+}
+.risk-select{
+	position: absolute;
+    top: 20px;
+    border: 1px solid #b2c7c2;
+    width: 110px;
+    background-color: #fff;
+    line-height: 20px;
+    display: none;
+    z-index: 9007;
+}
+.bond-value{
+	width: 98px;
+}
+.bond-select{
+	max-height : 100px;
+	
+	width: 110px;
+}
+.risk-select{
+	overflow-y : scroll;
+}
+.risk-select label{   
+	display: block;
+}
+
+.risk-product,
+.risk-account{
+	display: none;
+}
+.overlay{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+	z-index: 9006;
+}
+.isvalid{
+	cursor: pointer;
+}
+.loading{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	opacity: 0.6;
+	filter : alpha(opacity = 60);
+	z-index: 1000;
+	display: none;
+}
+.loading-tip{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 32px;
+	line-height: 32px;
+	padding-left: 40px;
+	width: 120px;
+	margin-left: -60px;
+	margin-top: -16px;
+	color: #333;
+	background: url("../css/icons/loading.gif") left center no-repeat;
+	font-size: 14px;
+} 
+.con-object,
+.bond-object{
+	width: 60px;
+    border: 1px solid #b2c7e2;
+    height: 22px;
+    vertical-align: middle;
+}
+
+.sub-controller,
+.bond-controller{
+	width: 90px;
+    border: 1px solid #b2c7e2;
+    height: 22px;
+    vertical-align: middle;
+}
+.profitCtl{
+	width: 70px;
+}
+.bond-form{
+	margin: 10px 0 20px 0;
+}
+.bondCtl{
+	float: right;
+	vertical-align: middle;
+}
+
+#linkbutton{
+	height: 26px;
+    line-height: 26px;
+    margin-left: 15px;
+    color: #14428d;
+    display: inline-block;
+    border : 1px solid #8FB8E6;
+    padding: 0 5px;
+}
+.inputStock{
+	padding: 2px;
+	border:1px solid #8FB8E6;
+	width: 100%;
+}
+.addItem{
+	padding: 3px;
+}
+.bond-item{
+	height: 25px;
+	line-height: 25px;
+}
+.bond-item span{
+	display: inline-block;
+}
+.bond-item .remove-item{
+	background: url("../css/icons/delete.png") center right no-repeat;
+	height: 25px;
+	width: 16px;
+	vertical-align: middle;
+	float: right;
+	display: none;
+	cursor: pointer;
+}
+
+/*侧边栏*/
+#siderBar{
+	padding: 10px 0;
+}
+.risk-system h3{
+	line-height: 25px;
+	color: #000;
+	cursor: default;
+}
+.risk-system li {
+	color: #6297dd;
+	cursor: pointer;
+	padding: 5px 10px;
+}
+.risk-system li.actived{
+	color: #fff;
+	background: #70a4f5;
+}
+
+/*风控记录*/
+#updatetime{
+	font-size: 12px;
+    color: #999;
+    vertical-align: middle;
+}
+.risk-recode{
+	padding: 20px;
+}
+.risk-tip{
+	text-align: center;
+	color: #666;
+    margin-top: 20px;
+    display: none;
+}
+
+/*多层查看*/
+.select_institution{
+	padding: 10px;
+}
+#accountLevel{
+	display: inline-block;
+	padding: 0 10px;
+}
+.account-top{
+	height: 28px;
+	background: -webkit-linear-gradient(top,#EFF5FF 0,#E0ECFF 100%);
+    background: -moz-linear-gradient(top,#EFF5FF 0,#E0ECFF 100%);
+    background: -o-linear-gradient(top,#EFF5FF 0,#E0ECFF 100%);
+    background: linear-gradient(to bottom,#EFF5FF 0,#E0ECFF 100%);
+}
+
+.merge{
+	    border: 1px solid #ccc;
+	    padding: 2px 12px;
+	    color: #15428b;
+	    cursor: pointer;
+}
+
+.account-container{
+	padding: 10px;
+}
+.account-container>div{
+	margin: 20px 0;
+}
+.account-container .account-init{
+	margin-top: 0;
+}
+.profit-detail{
+	color: #37556D;
+	padding: 2px 10px;
+}
+.profit-detail .profit-title{
+	color: #000;
+	font-size: 13px;
+}
+.pages {margin:10px 0;font-size: 12px;text-align: center; color:#666; vertical-align:middle}
+.pages a {cursor:pointer;border: #6699cc 1px solid;padding:2px 8px 2px 8px;margin:2px; display: inline-block; line-height:16px;color: #669acc; text-decoration: none;white-space:nowrap;}
+.pages a:hover {border: #669acc 1px solid; padding:2px 8px 2px 8px;background-color: #d7ebff;margin: 2px; color: #669acc;text-decoration: none}
+.pages a:active { border-right: #669acc 1px solid; border-top: #669acc 1px solid; border-left: #669acc 1px solid;color: #000; border-bottom: #669acc 1px solid}
+.pages span {display: inline-block; line-height:16px;border: #ccc 1px solid;padding:2px 8px 2px 8px;margin: 2px;color: #ccc; text-decoration: none;white-space:nowrap;}
+.pages strong {border: #669acc 1px solid;padding:2px 8px 2px 8px;display: inline-block; line-height:16px; font-weight: bold; margin: 2px; color: #fff;background-color: #669acc;white-space:nowrap;}
+.pages strong.prev, .pages strong.next{ border: #999 1px solid; color: #999; background-color: #fff;}
+.pages .prev {display: inline-block; line-height:16px;}
+.pages .prev:hover {display: inline-block; line-height:16px;}
+.pages .next {cursor:pointer;white-space:nowrap;display: inline-block; line-height:16px;}
+.pages .next:hover {display: inline-block; line-height:16px;}
+.pages em{font-style:normal;font-weight:bold;}
+.pages input{vertical-align:middle;padding-buttom:2px;}
+.pages input {padding: 1px 2px;color: #666;margin-right: 5px;margin-left: 5px;vertical-align: middle;text-align: center;}
+
+.main-table{
+	text-align: center;
+}
+.main-table thead td{
+	background-color: #E0ECFF;
+	color: #005181;
+	border: 1px solid #fff;
+	cursor: pointer;
+	width: 5%;
+}
+.main-table tbody tr{
+	line-height: 25px;
+}
+.main-table tbody tr:hover{
+	background-color: #ffe48d;
+}
+#trade-table tr{
+	line-height: 25px;
+}
+
+#trade-table thead td{
+	width: 7%;
+}
+
+#goods-panel{
+	padding: 10px;
+}
+#gd-table-1 tr td{
+	width: 0%;
+}
+.refresh-btn{
+	cursor: pointer;
+}
+
+/*权限管理*/
+#auth{
+	padding: 10px;
+}
+.tip{
+	display: block;
+    font-size: 12px;
+    color: #666;
+    margin-top: 20px;
+}
+#management{
+	text-align: center;
+}
+#management thead td{
+	width: 8%;
+	border:1px solid #fff;
+	background-color: #c4def7;
+	line-height: 25px;
+	color: #005181;
+}
+#management tbody tr{
+	line-height: 25px;
+}
+#management tbody tr:nth-child(even){
+	background-color: #f2f2f2;
+}
+#management tbody tr:hover{
+	background-color: #ffe48d;
+}
+
+.edit{
+	cursor: pointer;
+    vertical-align: middle;
+    visibility: hidden;
+}
+.all_count p{
+	line-height: 25px;
+}
+.all_count input{
+	vertical-align: middle;
+}
+
+#warning{
+	display: none;
+	padding: 10px;
+}
+
+/*账户管理界面*/
+#account{
+	padding: 15px;
+}
+.account-edit{
+	padding: 5px 10px;
+	border-radius: 5px;
+	background-color: #c1e0ff;
+	color: #14428d;
+	cursor: pointer;
+}
+.title{
+	margin: 20px 0;	
+}
+.title h1{
+	font-size: 14px;
+	display: inline-block;
+}
+i{
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+	cursor: pointer;
+	float: left;
+	display: none;
+}
+.pencil{
+	background: url("../css/icons/resize_png_new.png") center 5px no-repeat;
+}
+.delete{
+	background: url("../css/icons/delete.png") center 5px no-repeat;
+}
+.containter span{
+	width: 10%;
+	text-align: center;
+	display: inline-block;
+	line-height: 25px;
+	border:1px solid #ccc;
+}
+.conTitle{
+	margin-top: 20px;
+}
+.conTitle span{
+	background-color: #c4def7;
+}
+.product-add{
+	margin-left: 20%;
+	display: none;
+}
+.show{
+	display: inline-block !important;
+}
+.new-detail{
+	padding: 10px;
+}
+.new-detail span{
+	display: inline-block;
+}
+
+.short{
+	width: 72px;
+}
+.add-product{
+	display: inline-block;
+	padding: 5px;
+	color: #000;
+	background: url("../css/icons/edit_add.png") 5px no-repeat;
+	padding-left: 25px;
+	cursor: pointer;
+	border: 1px solid #aaa;
+    border-radius: 4px;
+    margin-top: 10px;
+	display: none;
+}
+
+.incommon{
+	border: 1px solid #95B8E7;
+	border-radius: 5px 5px 5px 5px;
+	line-height: 20px;
+	padding: 0 2px;
+}
+.stock,.futures{
+	padding: 5px 10px;
+}
+.stock span,
+.futures span{
+	font-weight: bold;
+	width: 100px;
+	display: inline-block;
+}
+.stock input,
+.futures input{
+	display: inline-block;
+	width: 146px;
+	border : 1px solid #ccc;
+	height: 25px;
+	line-height: 25px;
+	padding: 2px;
+}
+.stock select,
+.futures select{
+	display: inline-block;
+	width: 150px;
+	border : 1px solid #ccc;
+	height: 30px;
+}
+.operate,
+.operate-edit{
+	text-align: center;
+	padding: 10px 0;
+}
+.operate a,
+.operate-edit a{
+	margin: 0 20px;
+}
+.business-item{
+	display: inline-block;
+	width: 150px;
+	border:1px solid #ccc;
+	position: relative;
+}
+.error{
+	border:1px solid #f00 !important;
+}
+.hide{
+	display: none;
+}
+
+
+/*券商客户端*/
+#filter .content{
+	display: inline-block;
+	width: 14%;
+	padding: 0 5px;
+	margin: 10px 0px;
+}
+#filter .content span{
+	width: 20%;
+}
+.select_filter a{
+	display: inline-block;
+    padding: 3px 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #000;
+    margin-right: 10px;
+}
+#filter .content select{
+	width: 100px !important;
+}
+.datebox{
+	width: 100px;
+}
+
+
+
+
+
+
+
+
+
+

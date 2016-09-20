@@ -1,0 +1,18 @@
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,dl,dt,dd,input{margin:0;padding:0;}
+body{font-size:12px;font-family: "Tahoma","Verdana","Mircosoft YaHei","微软雅黑";}
+img{border:none}
+li{list-style:none}
+input,select,textarea{outline:none;}
+textarea{resize:none;}
+a{text-decoration:none;}
+html{height: 100%;}
+body{height: 100%}
+
+/*清浮动*/
+.clearfix:after{content:"";display:none;clear:both;}
+.clearfix{zoom:1;}
+
+
+/*选择*/
+::selection{background-color:#669900;color:#fff;text-shadow:none;}
+::-moz-selection{background-color:#669900;color:#fff;text-shadow:none;}

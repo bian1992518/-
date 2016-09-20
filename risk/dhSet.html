@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>私募投研销</title>
+	<link rel="shortcut icon" href="hexin.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="../css/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../css/icon.css">
+	<link rel="stylesheet" type="text/css" href="../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../css/sm.css">
+	<link rel="stylesheet" type="text/css" href="../css/autocomplete.css">
+	
+</head>
+<body>
+		<div class="easyui-tabs" id="tabs" style="width: 100%;">
+			<div title="单笔交易控制" class="risk_ctl">
+				<table id="dbRisk" data-options="toolbar : '#dbBar'"></table>
+				<div id="dbBar">
+					<a href="#" class="easyui-linkbutton btn-even" data-id="dbAdd"  data-options="iconCls:'icon-add'" >增加</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="dbEdit" data-options="iconCls:'icon-edit'">修改</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="dbDelete" data-options="iconCls:'icon-clear'">删除</a>
+				</div>
+			</div>
+			<div title="证券买卖控制" class="risk_ctl">
+				<table id="bondRisk" data-options="toolbar : '#bondBar'"></table>
+				<div id="bondBar">
+					<a href="#" class="easyui-linkbutton btn-even" data-id="bondAdd"  data-options="iconCls:'icon-add'" >增加</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="bondEdit" data-options="iconCls:'icon-edit'">修改</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="bondDelete" data-options="iconCls:'icon-clear'">删除</a>
+				</div>
+			</div>
+		</div>
+		<div class="easyui-dialog dialogCom" id="dbAdd"  title="单笔交易控制" style="width: 330px;padding: 10px;" >
+			<div class="risk-setting">
+				<span>启用风控:</span>
+				<input type="checkbox" class="switch-risk db-risk" checked="checked">
+				<span>维度控制:</span>
+				<select class="dbdim">
+					<option value="1">数量</option>
+				</select><br/><br/>
+				<span>风控说明:</span>
+				<input type="text" class="db-remark com-remark">
+				<div class="risk-operate">
+					<div class="db-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值一</span>
+							<input type="text" class="list-item db-item" class="riskValue">
+							<span class="dbUnit">股</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="dbCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+					<div class="db-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值二</span>
+							<input type="text" class="list-item db-item" class="riskValue">
+							<span class="dbUnit">股</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="dbCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+					<div class="db-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值三</span>
+							<input type="text" class="list-item db-item" class="riskValue">
+							<span class="dbUnit">股</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="dbCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="easyui-dialog dialogCom" id="bondAdd"  title="证券买卖控制" style="width: 330px;padding: 10px;" >
+			<div class="risk-setting">
+				<span>启用风控:</span>
+				<input type="checkbox" class="switch-risk bond-risk" checked="checked">
+				<a href="#"  id="linkbutton"  data-id="linkbutton">个股添加</a>
+				<br/><br/>
+				<span>控制对象:</span>
+				<select class="bond-object">
+					<option value="1">个股</option>
+				</select>
+				<span>细分对象:</span>
+				<select class="bond-controller">
+                	<option value="1">个股</option>
+           		</select>
+				<br/><br/>
+				<div class="bond-form com-form">
+					<span>风控设定:设置禁买禁卖名单</span>
+					<span class="risk-level">
+						<select class="bondCtl">
+							<option value="0">禁止买入</option>
+							<option value="1">禁止卖出</option>
+						</select>
+					</span>
+				</div>
+				<span>风控说明:</span>
+				<input type="text" class="bond-remark com-remark">
+			</div>
+		</div>
+		<div class="easyui-dialog dialogCom" id="stockAdd"  title="手动添加证券" style="width: 250px;padding: 10px;">
+			<div class="addItem">
+				
+			</div>
+			<div class="dlg">
+				<input type="text" class="inputStock" placeholder="添加证券">
+			</div>
+		</div>
+		<div class="mask"></div>
+		<div class="overlay"></div>
+	</div>
+	<div id="loading" class="loading">
+		<div class="loading-tip">
+			数据正在加载中...
+		</div>
+	</div>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../js/dhRiskManagement.js"></script>
+	<script type="text/javascript" src="../plugins/jquery.autocomplete.js"></script>
+</body>
+</html>

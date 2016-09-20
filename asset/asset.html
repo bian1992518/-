@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>多层查看</title>
+	<link rel="shortcut icon" href="hexin.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="../css/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../css/icon.css">
+	<link rel="stylesheet" type="text/css" href="../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../css/sm.css">
+	<link rel="stylesheet" type="text/css" href="../zTreeStyle/zTreeStyle.css">
+</head>
+<body>
+	<div class="easyui-layout" style="height: 100%;" id="account">
+		<div data-options="region:'west',split:true,title:'账户列表'" style="width: 180px;">
+			<div id="assetTree" class="ztree"></div>
+		</div>
+		<div data-options="region:'center',split:true" >
+			<div class="account-top">
+			</div>
+			<div class="select_institution">
+				<span>选择机构</span>
+				<select id="select_inst">
+					
+				</select>
+			</div>
+			<div class="account-container">
+				<div class="account-init">
+					<table id="productQuery" data-options="toolbar : '#productBar'"></table>
+					<div id="productBar">
+						<span id="accountLevel"></span>
+						<a href="#" class="easyui-linkbutton btn-even" data-id="refresh"  data-options="iconCls:'icon-reload'">刷新数据</a>
+						<a href="#" class="easyui-linkbutton btn-even" data-id="riskExport">导出数据</a>
+					</div>
+				</div>
+				<div class="hold-pandect">
+					<div class="title">持仓总览
+		            	<span style="color:rgb(55,85,109);font-weight:normal">
+		            		(共计<span class="c_a" style="font-weight:bolder"></span>只股票，<span class="c_b" style="font-weight:bolder"></span>股，
+		            		  市值<span class="c_c" style="font-weight:bolder"></span>元，占净资产比例<span class="c_d" style="font-weight:bolder"></span>)
+		            	</span>
+		            	<button class="merge">合并</button>
+		            </div>
+		            <div class="table-2">
+	                <table  class="main-table" border="0" id="num-table">
+	                    <thead>
+	                        <tr>
+	                            <td  data-type="stock_code" data-sort="1">证券代码<i class="sort-1 sort"></i></td>
+	                            <td  data-type="stock_name" data-sort="1">证券名称</td>
+	                            <td  data-type="stock_remain" data-sort="1">持仓数量</td>
+								<td  data-type="floating_profit" data-sort="1">浮动盈亏</td>
+								<td  data-type="floating_profit_rate" data-sort="1">浮盈比例%</td>    
+	                            <td  data-type="price_current" data-sort="1">最新价</td>
+	                            <td  data-type="stock_market_value" data-sort="1">持仓市值</td>
+	                            <td  data-type="market_asset_rate" data-sort="1">占净值比例（实时）%</td>
+	                            <td  data-type="market_asset_rate_t1" data-sort="1">占净值比例（T-1）%</td>
+	                            <td  data-type="up_down_current" data-sort="1">实时涨跌幅%</td>
+	                            <td  data-type="net_value_change" data-sort="1">净值变动%</td>
+	                            <td  data-type="price_trans_in" data-sort="1">成本价</td>
+	                            <td  data-type="net_value" data-sort="1">总成本</td>          
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+                        
+	                    </tbody>
+	                </table>
+					<!-- 持仓记录 分页 -->
+	                <div id="cc-pages" class="pages" style="text-align:right;"></div>
+	            </div>
+				</div>
+				<div class="profit-report">
+					<div class="title">盈亏记录
+						<span style="color:rgb(55,85,109);font-weight:normal">
+		            		(浮动盈亏<span class="_y_a" style="font-weight:bolder"></span>元，已结盈亏<span class="_y_b" style="font-weight:bolder"></span>元，
+		            		总盈亏<span class="_y_c" style="font-weight:bolder"></span>元，相对昨日<span class="_y_d" style="font-weight:bolder"></span>元)
+		            	</span>
+			    	</div>
+		            <div class="table-1">
+		                <table  class="main-table" border="0" cellpadding="0" cellspacing="0" id="yk-table">
+		                    <thead>
+		                        <tr>
+		                        	<td  style="width:12%" data-type="establish_date" data-sort="1">建仓时间</td>
+		                        	<td  style="width:12%" data-type="close_date" data-sort="1">清仓时间</td>
+		                            <td  style="width:12%"data-type="stock_name" data-sort="1">证券名称<i class="sort-1 sort"></i></td>
+		                            <td  style="width:12%" data-type="stock_code" data-sort="1">证券代码</td>
+		                            <td  style="width:12%" data-type="trans_count" data-sort="1">数量</td>
+		                            <td  style="width:11%" data-type="price_trans_in" data-sort="1">成本价</td>
+		                            <td  style="width:11%" data-type="price_trans_out" data-sort="1">卖出价</td>
+		                            <td  style="width:100px" data-type="over_yk" data-sort="1">已结盈亏</td>
+		                            <td  style="width:10%" data-type="over_yk_rate" data-sort="1">已结盈亏比例%</td>
+		                        </tr>
+		                    </thead>
+		                    <tbody>
+	                       
+		                    </tbody>
+		                </table>
+		                <!-- 盈亏记录 分页 -->
+		                <div id="yk-pages" class="pages" style="text-align:right;"></div>
+		            </div>	
+				</div>
+				<div class="trade-recode">
+					<div class="title">交易记录
+						<span style="color:rgb(55,85,109);font-weight:normal">
+		            		(交易<span class="j_a" style="font-weight:bolder"></span>笔<span class="j_b" style="font-weight:bolder"></span>股<span class="j_c" style="font-weight:bolder"></span>元,
+		            		买入<span class="j_d" style="font-weight:bolder"></span>笔<span class="j_e" style="font-weight:bolder"></span>股<span class="j_f" style="font-weight:bolder"></span>元,
+		            		卖出<span class="j_g" style="font-weight:bolder"></span>笔<span class="j_h" style="font-weight:bolder"></span>股<span class="j_i" style="font-weight:bolder"></span>元)
+		            	</span>
+		            </div>
+		            <div class="table-3">
+		                <table  class="main-table" border="0" id="trade-table">
+		                    <thead>
+		                        <tr>
+		                            <td data-type="trans_date" data-sort="1">发生日期<i class="sort-1 sort"></i></td>
+		                            <td data-type="op_name" data-sort="1">委托方向</td>
+		                            <td data-type="operator_name" data-sort="1">交易员</td>
+		                            <td data-type="stock_code" data-sort="1">证券代码</td>
+		                            <td data-type="stock_name" data-sort="1">证券名称</td>
+		                            <td data-type="trans_count" data-sort="1">成交数量</td>
+		                            <td data-type="price_trans_in" data-sort="1">成交价</td>
+		                            <td data-type="money_chg" data-sort="1">成交金额</td>
+		                            <td data-type="rate" data-sort="1">占资产比例%</td>
+		                        </tr>
+		                    </thead>
+		                    <tbody>
+	                        
+		                    </tbody>
+		                </table>
+		                <!-- 交易记录 分页 -->
+		                <div id="trade-pages" class="pages" style="text-align:right;"></div>
+		            </div>	
+				</div>
+			</div>
+			<div id="goods-panel" class="panel">
+			    <div class="goods-header">
+			            <span class="title" id="J-goods-title">期货名称</span>
+			            <button id="import-data" class="import-button" style="display: none">导入结算单</button>
+			            <button id="goods-refresh-btn" class="refresh-btn  btn-even" data-id="refresh">刷新数据</button>
+			    </div>
+			    <div class="title">资金状况</div>
+		            <div class="table-1">
+		                <table style="width:100%" class="main-table goods-table" border="0" id="gd-table-1">
+		                    <thead>
+		                        <tr>
+		                            <td ></td>
+		                            <td  data-name="" data-sort="1">资金账号</td>
+		                            <td  data-name="" data-sort="1">客户名称</td>
+		                            <td  data-name="" data-sort="1">日期</td>
+		                            <td  data-name="">当日结存</td>
+		                            <td  data-name="" data-sort="1">上日结存</td>
+		                            <td  data-name="" data-sort="1">当日盈亏</td>
+		                            <td >平仓盈亏</td>
+		                            <td >持仓盯市盈亏</td>
+		                            <td >当日存取合计</td>
+		                            <td  data-name="">手续费</td>
+		                            <td  data-name="">保证金占用</td>
+		                            <td  data-name="">可用资金</td>
+		                        </tr>
+		                    </thead>
+		                    <tbody>
+	                       
+		                    </tbody>
+		                </table>
+		            </div>
+			    
+			    <div class="title">持仓明细表</div>
+		            <div class="table-2">
+		                <table style="width:100%" class="main-table goods-table" border="0" id="gd-table-2">
+		                    <thead>
+		                        <tr>
+		                            <td  data-name="" data-sort="1">交易所</td>
+		                            <td  data-name="" data-sort="1">品种</td>
+		                            <td  data-name="" data-sort="1">合约</td>
+		                            <td  data-name="">开仓日期</td>
+		                            <td  data-name="" data-sort="1">投/保</td>
+		                            <td  data-name="" data-sort="1">买/卖</td>
+		                            <td >持仓量</td>
+		                            <td >开仓价</td>
+		                            <td >昨结算</td>
+		                            <td  data-name="">结算价</td>
+		                            <td  data-name="">浮动盈亏</td>
+	                                <td >盯市盈亏</td>
+	                                <td >保证金</td>
+		                        </tr>
+		                    </thead>
+		                    <tbody>
+	                       
+		                    </tbody>
+		                </table>
+		            </div>
+			    
+			    <div class="title">持仓汇总表</div>
+		            <div class="table-3">
+		                <table  class="main-table goods-table" border="0" id="gd-table-3">
+		                    <thead>
+		                        <tr>
+		                            <td  data-name="" data-sort="1">品种</td>
+		                            <td  data-name="" data-sort="1">合约</td>
+		                            <td  data-name="" data-sort="1">买持</td>
+		                            <td  data-name="">买均价</td>
+		                            <td  data-name="" data-sort="1">卖持</td>
+		                            <td  data-name="" data-sort="1">卖均价</td>
+		                            <td >昨结算</td>
+		                            <td >今结算</td>
+		                            <td >持仓盯市盈亏</td>
+		                            <td  data-name="">保证金占用</td>
+		                            <td  data-name="">投保</td>
+		                            <td ></td>
+	                                    <td ></td>
+		                        </tr>
+		                    </thead>
+		                    <tbody>
+	                       
+		                    </tbody>
+		                </table>
+		            </div>
+			    
+			    <div class="title">成交记录表</div>
+		            <div class="table-4">
+		                <table  class="main-table goods-table" border="0" id="gd-table-4">
+		                    <thead>
+		                        <tr>
+	                                <td >成交日期</td>
+	                                <td  data-name="" data-sort="1">交易所</td>
+	                                <td  data-name="" data-sort="1">品种</td>
+	                                <td  data-name="" data-sort="1">合约</td>
+	                                <td  data-name="">买/卖</td>
+	                                <td  data-name="" data-sort="1">投/保</td>
+	                                <td  data-name="" data-sort="1">成交价</td>
+	                                <td >手数</td>
+	                                <td >成交额</td>
+	                                <td >开平</td>
+	                                <td  data-name="">手续费</td>
+	                                <td  data-name="">平仓盈亏</td>
+	                                <td  data-name="">成交序号</td>
+		                        </tr>
+		                    </thead>
+		                    <tbody>
+	                       
+		                    </tbody>
+		                </table>
+		            </div>
+			    
+			    <div class="title">平仓明细表</div>
+		            <div class="table-5">
+		                <table  class="main-table goods-table" border="0" id="gd-table-5">
+		                    <thead>
+		                        <tr>
+	                                <td >平仓日期</td>
+	                                <td  data-name="" data-sort="1">交易所</td>
+	                                <td  data-name="" data-sort="1">品种</td>
+	                                <td  data-name="" data-sort="1">合约</td>
+	                                <td  data-name="">开仓日期</td>
+	                                <td  data-name="" data-sort="1">买/卖</td>
+	                                <td  data-name="" data-sort="1">手数</td>
+	                                <td >开仓价</td>
+	                                <td >昨结算</td>
+	                                <td >成交价</td>
+	                                <td  data-name="">平仓盈亏</td>
+	                                <td  data-name="">权利金收支</td>
+	                                <td ></td>
+		                        </tr>
+		                    </thead>
+		                    <tbody>
+	                       
+		                    </tbody>
+		                </table>
+		            </div>
+			</div>
+		</div>
+	</div>
+	<div id="loading" class="loading">
+		<div class="loading-tip">
+			数据正在加载中...
+		</div>
+	</div>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../plugins/jquery.ztree.core-3.5.min.js"></script>
+	<script type="text/javascript" src="../js/asset.js"></script>
+	<script type="text/javascript" src="../js/thsPage.js"></script>
+</body>
+</html>

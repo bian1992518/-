@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>私募投研销</title>
+	<link rel="shortcut icon" href="hexin.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="../css/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../css/icon.css">
+	<link rel="stylesheet" type="text/css" href="../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../css/sm.css">
+	<link rel="stylesheet" type="text/css" href="../css/autocomplete.css">
+	
+</head>
+<body>
+		<div class="easyui-tabs" id="tabs" style="width: 100%;">
+			<div title="持仓市值控制" class="risk_ctl">
+				<table id="numRisk" data-options="toolbar : '#numBar'"></table>
+				<div id="numBar">
+					<a href="#" class="easyui-linkbutton btn-even" data-id="numAdd"  data-options="iconCls:'icon-add'" >增加</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="numEdit" data-options="iconCls:'icon-edit'">修改</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="numDelete" data-options="iconCls:'icon-clear'">删除</a>
+				</div>
+			</div>
+			<div title="持仓数量控制" class="risk_ctl">
+				<table id="numberRisk" data-options="toolbar : '#numberBar'"></table>
+				<div id="numberBar">
+					<a href="#" class="easyui-linkbutton btn-even" data-id="numberAdd"  data-options="iconCls:'icon-add'" >增加</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="numberEdit" data-options="iconCls:'icon-edit'">修改</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="numberDelete" data-options="iconCls:'icon-clear'">删除</a>
+				</div>
+			</div>
+			<div title="单笔交易控制" class="risk_ctl">
+				<table id="dbRisk" data-options="toolbar : '#dbBar'"></table>
+				<div id="dbBar">
+					<a href="#" class="easyui-linkbutton btn-even" data-id="dbAdd"  data-options="iconCls:'icon-add'" >增加</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="dbEdit" data-options="iconCls:'icon-edit'">修改</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="dbDelete" data-options="iconCls:'icon-clear'">删除</a>
+				</div>
+			</div>
+			<div title="持仓成本控制" class="risk_ctl">
+				<table id="costRisk" data-options="toolbar : '#costBar'"></table>
+				<div id="costBar">
+					<a href="#" class="easyui-linkbutton btn-even" data-id="costAdd"  data-options="iconCls:'icon-add'" >增加</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="costEdit" data-options="iconCls:'icon-edit'">修改</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="costDelete" data-options="iconCls:'icon-clear'">删除</a>
+				</div>
+			</div>
+			<div title="资产类别市值控制" class="risk_ctl">
+				<table id="assetRisk" data-options="toolbar : '#assetBar'"></table>
+				<div id="assetBar">
+					<a href="#" class="easyui-linkbutton btn-even" data-id="assetAdd"  data-options="iconCls:'icon-add'" >增加</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="assetEdit" data-options="iconCls:'icon-edit'">修改</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="assetDelete" data-options="iconCls:'icon-clear'">删除</a>
+				</div>
+			</div>
+			<div title="交易额度控制" class="risk_ctl">
+				<table id="quotaRisk" data-options="toolbar : '#quotaBar'"></table>
+				<div id="quotaBar">
+					<a href="#" class="easyui-linkbutton btn-even" data-id="quotaAdd"  data-options="iconCls:'icon-add'" >增加</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="quotaEdit" data-options="iconCls:'icon-edit'">修改</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="quotaDelete" data-options="iconCls:'icon-clear'">删除</a>
+				</div>
+			</div>
+			<div title="执行价格控制" class="risk_ctl">
+				<table id="priceRisk" data-options="toolbar : '#priceBar'"></table>
+				<div id="priceBar">
+					<a href="#" class="easyui-linkbutton btn-even" data-id="priceAdd"  data-options="iconCls:'icon-add'" >增加</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="priceEdit" data-options="iconCls:'icon-edit'">修改</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="priceDelete" data-options="iconCls:'icon-clear'">删除</a>
+				</div>
+			</div>
+			<div title="盈亏额度控制" class="risk_ctl">
+				<table id="profitRisk" data-options="toolbar : '#profitBar'"></table>
+				<div id="profitBar">
+					<a href="#" class="easyui-linkbutton btn-even" data-id="profitAdd"  data-options="iconCls:'icon-add'" >增加</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="profitEdit" data-options="iconCls:'icon-edit'">修改</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="profitDelete" data-options="iconCls:'icon-clear'">删除</a>
+				</div>
+			</div>
+			<div title="同向反向控制" class="risk_ctl">
+				<table id="reverseRisk" data-options="toolbar : '#reverseBar'"></table>
+				<div id="reverseBar">
+					<a href="#" class="easyui-linkbutton btn-even" data-id="reverseAdd"  data-options="iconCls:'icon-add'" >增加</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="reverseEdit" data-options="iconCls:'icon-edit'">修改</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="reverseDelete" data-options="iconCls:'icon-clear'">删除</a>
+				</div>
+			</div>
+			<div title="证券买卖控制" class="risk_ctl">
+				<table id="bondRisk" data-options="toolbar : '#bondBar'"></table>
+				<div id="bondBar">
+					<a href="#" class="easyui-linkbutton btn-even" data-id="bondAdd"  data-options="iconCls:'icon-add'" >增加</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="bondEdit" data-options="iconCls:'icon-edit'">修改</a>
+					<a href="#" class="easyui-linkbutton btn-even disabled" data-id="bondDelete" data-options="iconCls:'icon-clear'">删除</a>
+				</div>
+			</div>
+		</div>
+		<div class="easyui-dialog dialogCom" id="numAdd"  title="持仓市值控制" style="width: 330px;padding: 10px;" >
+			<div class="risk-setting">
+				<span>启用风控:</span>
+				<input type="checkbox" class="switch-risk num-risk" checked="checked">
+				<span>维度控制:</span>
+				<select class="dimension">
+					<option value="0">绝对值</option>
+					<option value="1">资产占比</option>
+				</select><br/><br/>
+				<span>控制对象:</span>
+				<select class="con-object">
+					<option value="1">个股</option>
+               		<option value="2">板块</option>
+                	<option value="3">概念</option>
+               		<option value="4">行业(证监会标准)</option>
+				</select>
+				<span>细分对象:</span>
+				<select class="sub-controller">
+                	<option value="1">个股</option>
+           		</select>
+				<br/><br/>
+				<span>账户层次:</span>
+				<select class="select-unit">
+					<option value="1">机构</option>
+					<option value="2">产品</option>
+					<option value="3">账号</option>
+				</select>
+				<span>账户编号:</span>
+				<div class="select-range">
+					<div class="select-value">
+						单机进行选择
+					</div>
+					<div class="risk-select num-select">
+						<div class="risk-instution">
+							
+						</div>
+						<div class="risk-product">
+							
+						</div>
+						<div class="risk-account">
+							
+						</div>
+					</div>
+				</div>
+				<br/><br/>
+				<span>风控说明:</span>
+				<input type="text" class="risk-remark com-remark">
+				<div class="risk-operate">
+					<div class="list-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值一</span>
+							<input type="text" class="list-item number-item" class="riskValue">
+							<span class="numberUnit">万元</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="numberCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+					<div class="list-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值二</span>
+							<input type="text" class="list-item number-item" class="riskValue">
+							<span class="numberUnit">万元</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="numberCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+					<div class="list-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值三</span>
+							<input type="text" class="list-item number-item" class="riskValue">
+							<span class="numberUnit">万元</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="numberCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="easyui-dialog dialogCom" id="numberAdd"  title="持仓数量控制" style="width: 330px;padding: 10px;" >
+			<div class="risk-setting">
+				<span>启用风控:</span>
+				<input type="checkbox" class="switch-risk number-risk" checked="checked">
+				<span>维度控制:</span>
+				<select class="numdim">
+					<option value="0">绝对值</option>
+					<option value="1">占流通股比例</option>
+				</select><br/><br/>
+				<span>账户层次:</span>
+				<select class="select-unit">
+					<option value="1">机构</option>
+					<option value="2">产品</option>
+					<option value="3">账号</option>
+				</select>
+				<span>账户编号:</span>
+				<div class="select-range">
+					<div class="select-value">
+						单机进行选择
+					</div>
+					<div class="risk-select number-select">
+						<div class="risk-instution">
+							
+						</div>
+						<div class="risk-product">
+							
+						</div>
+						<div class="risk-account">
+							
+						</div>
+					</div>
+				</div>
+				<br/><br/>
+				<span>风控说明:</span>
+				<input type="text" class="num-remark com-remark">
+				<div class="risk-operate">
+					<div class="num-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值一</span>
+							<input type="text" class="list-item num-item" class="riskValue">
+							<span class="numUnit">股</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="numCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+					<div class="num-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值二</span>
+							<input type="text" class="list-item num-item" class="riskValue">
+							<span class="numUnit">股</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="numCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+					<div class="num-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值三</span>
+							<input type="text" class="list-item num-item" class="riskValue">
+							<span class="numUnit">股</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="numCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="easyui-dialog dialogCom" id="dbAdd"  title="单笔交易控制" style="width: 330px;padding: 10px;" >
+			<div class="risk-setting">
+				<span>启用风控:</span>
+				<input type="checkbox" class="switch-risk db-risk" checked="checked">
+				<span>维度控制:</span>
+				<select class="dbdim">
+					<option value="0">金额</option>
+					<option value="1">数量</option>
+				</select><br/><br/>
+				<span>账户层次:</span>
+				<select class="select-unit">
+					<option value="1">机构</option>
+					<option value="2">产品</option>
+					<option value="3">账号</option>
+				</select>
+				<span>账户编号:</span>
+				<div class="select-range">
+					<div class="select-value">
+						单机进行选择
+					</div>
+					<div class="risk-select db-select">
+						<div class="risk-instution">
+							
+						</div>
+						<div class="risk-product">
+							
+						</div>
+						<div class="risk-account">
+							
+						</div>
+					</div>
+				</div>
+				<br/><br/>
+				<span>风控说明:</span>
+				<input type="text" class="db-remark com-remark">
+				<div class="risk-operate">
+					<div class="db-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值一</span>
+							<input type="text" class="list-item db-item" class="riskValue">
+							<span class="dbUnit">万元</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="dbCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+					<div class="db-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值二</span>
+							<input type="text" class="list-item db-item" class="riskValue">
+							<span class="dbUnit">万元</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="dbCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+					<div class="db-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值三</span>
+							<input type="text" class="list-item db-item" class="riskValue">
+							<span class="dbUnit">万元</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="dbCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="easyui-dialog dialogCom" id="costAdd"  title="持仓成本控制" style="width: 330px;padding: 10px;" >
+			<div class="risk-setting">
+				<span>启用风控:</span>
+				<input type="checkbox" class="switch-risk cost-risk" checked="checked">
+				<span>维度控制:</span>
+				<select class="costdim">
+					<option value="0">绝对值</option>
+					<option value="1">资产占比</option>
+				</select><br/><br/>
+				<span>账户层次:</span>
+				<select class="select-unit">
+					<option value="1">机构</option>
+					<option value="2">产品</option>
+					<option value="3">账号</option>
+				</select>
+				<span>账户编号:</span>
+				<div class="select-range">
+					<div class="select-value">
+						单机进行选择
+					</div>
+					<div class="risk-select cost-select">
+						<div class="risk-instution">
+							
+						</div>
+						<div class="risk-product">
+							
+						</div>
+						<div class="risk-account">
+							
+						</div>
+					</div>
+				</div>
+				<br/><br/>
+				<span>风控说明:</span>
+				<input type="text" class="cost-remark com-remark">
+				<div class="risk-operate">
+					<div class="cost-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值一</span>
+							<input type="text" class="list-item cost-item" class="riskValue">
+							<span class="costUnit">万元</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="costCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+					<div class="cost-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值二</span>
+							<input type="text" class="list-item cost-item" class="riskValue">
+							<span class="costUnit">万元</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="costCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+					<div class="cost-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值三</span>
+							<input type="text" class="list-item cost-item" class="riskValue">
+							<span class="costUnit">万元</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="costCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="easyui-dialog dialogCom" id="assetAdd"  title="资产类别市值控制" style="width: 330px;padding: 10px;" >
+			<div class="risk-setting">
+				<span>启用风控:</span>
+				<input type="checkbox" class="switch-risk asset-risk" checked="checked">
+				<span>维度控制:</span>
+				<select class="assetdim">
+					<option value="0">绝对值</option>
+					<option value="1">资产占比</option>
+				</select><br/><br/>
+				<span>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;种:</span>
+				<select class="selectAsset">
+					<option value="0">股票</option>
+				</select><br/><br/>
+				<span>账户层次:</span>
+				<select class="select-unit">
+					<option value="1">机构</option>
+					<option value="2">产品</option>
+					<option value="3">账号</option>
+				</select>
+				<span>账户编号:</span>
+				<div class="select-range">
+					<div class="select-value">
+						单机进行选择
+					</div>
+					<div class="risk-select asset-select">
+						<div class="risk-instution">
+							
+						</div>
+						<div class="risk-product">
+							
+						</div>
+						<div class="risk-account">
+							
+						</div>
+					</div>
+				</div>
+				<br/><br/>
+				<span>风控说明:</span>
+				<input type="text" class="asset-remark com-remark">
+				<div class="risk-operate">
+					<div class="asset-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值一</span>
+							<input type="text" class="list-item asset-item" class="riskValue">
+							<span class="assetUnit">万元</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="assetCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+					<div class="asset-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值二</span>
+							<input type="text" class="list-item asset-item" class="riskValue">
+							<span class="assetUnit">万元</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="assetCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+					<div class="asset-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值三</span>
+							<input type="text" class="list-item asset-item" class="riskValue">
+							<span class="assetUnit">万元</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="assetCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="easyui-dialog dialogCom" id="quotaAdd"  title="交易额度控制" style="width: 330px;padding: 10px;" >
+			<div class="risk-setting">
+				<span>启用风控:</span>
+				<input type="checkbox" class="switch-risk quota-risk" checked="checked">
+				<span>维度控制:</span>
+				<select class="quotadim">
+					<option value="0">绝对值</option>
+					<option value="1">资产占比</option>
+				</select><br/><br/>
+				<span>控制方向:</span>
+				<select class="selectQuota">
+					<option value="0">买</option>
+					<option value="1">卖</option>
+					<option value="2">买+卖</option>
+				</select><br/><br/>
+				<span>账户层次:</span>
+				<select class="select-unit">
+					<option value="1">机构</option>
+					<option value="2">产品</option>
+					<option value="3">账号</option>
+				</select>
+				<span>账户编号:</span>
+				<div class="select-range">
+					<div class="select-value">
+						单机进行选择
+					</div>
+					<div class="risk-select quota-select">
+						<div class="risk-instution">
+							
+						</div>
+						<div class="risk-product">
+							
+						</div>
+						<div class="risk-account">
+							
+						</div>
+					</div>
+				</div>
+				<br/><br/>
+				<span>风控说明:</span>
+				<input type="text" class="quota-remark com-remark">
+				<div class="risk-operate">
+					<div class="quota-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值一</span>
+							<input type="text" class="list-item quota-item" class="riskValue">
+							<span class="quotaUnit">元</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="quotaCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+					<div class="quota-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值二</span>
+							<input type="text" class="list-item quota-item" class="riskValue">
+							<span class="quotaUnit">元</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="quotaCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+					<div class="quota-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值三</span>
+							<input type="text" class="list-item quota-item" class="riskValue">
+							<span class="quotaUnit">元</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="quotaCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="easyui-dialog dialogCom" id="priceAdd"  title="执行价格控制" style="width: 330px;padding: 10px;" >
+			<div class="risk-setting">
+				<span>启用风控:</span>
+				<input type="checkbox" class="switch-risk price-risk" checked="checked">
+				<span>维度控制:</span>
+				<select class="pricedim">
+					<option value="0">绝对值</option>
+					<option value="1">资产占比</option>
+				</select><br/><br/>
+				<span>控制方向:</span>
+				<select class="selectPrice">
+					<option value="0">昨收</option>
+					<option value="1">市均</option>
+					<option value="2">最新</option>
+				</select><br/><br/>
+				<span>账户层次:</span>
+				<select class="select-unit">
+					<option value="1">机构</option>
+					<option value="2">产品</option>
+					<option value="3">账号</option>
+				</select>
+				<span>账户编号:</span>
+				<div class="select-range">
+					<div class="select-value">
+						单机进行选择
+					</div>
+					<div class="risk-select price-select">
+						<div class="risk-instution">
+							
+						</div>
+						<div class="risk-product">
+							
+						</div>
+						<div class="risk-account">
+							
+						</div>
+					</div>
+				</div>
+				<br/><br/>
+				<span>风控说明:</span>
+				<input type="text" class="price-remark com-remark">
+				<div class="risk-operate">
+					<div class="price-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值一</span>
+							<input type="text" class="list-item price-item" class="riskValue">
+							<span class="priceUnit">元</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="priceCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+					<div class="price-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值二</span>
+							<input type="text" class="list-item price-item" class="riskValue">
+							<span class="priceUnit">元</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="priceCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+					<div class="price-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值三</span>
+							<input type="text" class="list-item price-item" class="riskValue">
+							<span class="priceUnit">元</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="priceCtl">
+								<option value="1">警告</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="easyui-dialog dialogCom" id="profitAdd"  title="盈亏额度控制" style="width: 330px;padding: 10px;" >
+			<div class="risk-setting">
+				<span>启用风控:</span>
+				<input type="checkbox" class="switch-risk profit-risk" checked="checked">
+				<span>维度控制:</span>
+				<select class="profitdim">
+					<option value="0">绝对值</option>
+					<option value="1">比例</option>
+				</select><br/><br/>
+				<span>控制方向:</span>
+				<select class="selectProfit">
+					<option value="0">盈利</option>
+					<option value="1">亏损</option>
+					<option value="2">盈利或亏损</option>
+				</select><br/><br/>
+				<span>账户层次:</span>
+				<select class="select-unit">
+					<option value="1">机构</option>
+					<option value="2">产品</option>
+					<option value="3">账号</option>
+				</select>
+				<span>账户编号:</span>
+				<div class="select-range">
+					<div class="select-value">
+						单机进行选择
+					</div>
+					<div class="risk-select profit-select">
+						<div class="risk-instution">
+							
+						</div>
+						<div class="risk-product">
+							
+						</div>
+						<div class="risk-account">
+							
+						</div>
+					</div>
+				</div>
+				<br/><br/>
+				<span>风控说明:</span>
+				<input type="text" class="profit-remark com-remark">
+				<div class="risk-operate">
+					<div class="profit-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值一</span>
+							<input type="text" class="list-item profit-item" class="riskValue">
+							<span class="profitUnit">万元</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="profitCtl">
+								<option value="1">卖出(风控员确认)</option>
+								<option value="2">警告</option>
+							</select>
+						</div>
+					</div>
+					<div class="profit-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值二</span>
+							<input type="text" class="list-item profit-item" class="riskValue">
+							<span class="profitUnit">万元</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="profitCtl">
+								<option value="1">卖出(风控员确认)</option>
+								<option value="2">警告</option>
+							</select>
+						</div>
+					</div>
+					<div class="profit-form com-form">
+						<div class="risk-unit">
+							<span class="riskName">阀值三</span>
+							<input type="text" class="list-item profit-item" class="riskValue">
+							<span class="profitUnit">万元</span>
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="profitCtl">
+								<option value="1">卖出(风控员确认)</option>
+								<option value="2">警告</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="easyui-dialog dialogCom" id="reverseAdd"  title="同向反向控制" style="width: 330px;padding: 10px;" >
+			<div class="risk-setting">
+				<span>启用风控:</span>
+				<input type="checkbox" class="switch-risk reverse-risk" checked="checked">
+				<br/><br/>
+				<span>账户层次:</span>
+				<select class="select-unit">
+					<option value="1">机构</option>
+					<option value="2">产品</option>
+					<option value="3">账号</option>
+				</select>
+				<span>账户编号:</span>
+				<div class="select-range">
+					<div class="select-value">
+						单机进行选择
+					</div>
+					<div class="risk-select reverse-select">
+						<div class="risk-instution">
+							
+						</div>
+						<div class="risk-product">
+							
+						</div>
+						<div class="risk-account">
+							
+						</div>
+					</div>
+				</div>
+				<br/><br/>
+				<span>风控说明:</span>
+				<input type="text" class="reverse-remark com-remark">
+				<div class="risk-operate">
+					<div class="reverse-form com-form">
+						<div class="risk-unit">
+							若用户所选资产任一单元内对同一股票同时反向委托,则
+						</div>
+						<div class="risk-level">
+							<span>触警操作:</span>
+							<select class="reverseCtl">
+								<option value="1">预警</option>
+								<option value="2">禁止</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="easyui-dialog dialogCom" id="bondAdd"  title="证券买卖控制" style="width: 330px;padding: 10px;" >
+			<div class="risk-setting">
+				<span>启用风控:</span>
+				<input type="checkbox" class="switch-risk bond-risk" checked="checked">
+				<a href="#"  id="linkbutton"  data-id="linkbutton">个股添加</a>
+				<br/><br/>
+				<span>控制对象:</span>
+				<select class="bond-object">
+					<option value="1">个股</option>
+               		<option value="2">板块</option>
+                	<option value="3">概念</option>
+               		<option value="4">行业(证监会标准)</option>
+				</select>
+				<span>细分对象:</span>
+				<select class="bond-controller">
+                	<option value="1">个股</option>
+           		</select>
+				<br/><br/>
+				<span>账户层次:</span>
+				<select class="select-unit">
+					<option value="1">机构</option>
+					<option value="2">产品</option>
+					<option value="3">账号</option>
+				</select>
+				<span>账户编号:</span>
+				<div class="select-range">
+					<div class="select-value bond-value">
+						单机进行选择
+					</div>
+					<div class="risk-select bond-select">
+						<div class="risk-instution">
+							
+						</div>
+						<div class="risk-product">
+							
+						</div>
+						<div class="risk-account">
+							
+						</div>
+					</div>
+				</div>
+				<br/><br/>
+				<div class="bond-form com-form">
+					<span>风控设定:设置禁买禁卖名单</span>
+					<span class="risk-level">
+						<select class="bondCtl">
+							<option value="0">禁止买入</option>
+							<option value="1">禁止卖出</option>
+						</select>
+					</span>
+				</div>
+				<span>风控说明:</span>
+				<input type="text" class="bond-remark com-remark">
+			</div>
+		</div>
+		<div class="easyui-dialog dialogCom" id="stockAdd"  title="手动添加证券" style="width: 250px;padding: 10px;">
+			<div class="addItem">
+				
+			</div>
+			<div class="dlg">
+				<input type="text" class="inputStock" placeholder="添加证券">
+			</div>
+		</div>
+		<div class="mask"></div>
+		<div class="overlay"></div>
+	</div>
+	<div id="loading" class="loading">
+		<div class="loading-tip">
+			数据正在加载中...
+		</div>
+	</div>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../js/riskManagement.js"></script>
+	<script type="text/javascript" src="../plugins/jquery.autocomplete.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>机构设置总览</title>
+	<link rel="shortcut icon" href="hexin.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="../css/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../css/icon.css">
+	<link rel="stylesheet" type="text/css" href="../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../css/sm.css">
+</head>
+<body>
+	<div class="risk-recode">
+		<div class="filter" id="filter">
+			<div class="content">
+				<span>控制类别</span>
+				<select class="select_style" id="com">
+					<option value="">全部</option>
+					<option value="11">持仓市值控制</option>
+					<option value="10">持仓数量控制</option>
+					<option value="1">单笔交易控制</option>	<!-- 单笔交易金额风控规则是1,数量风控规则是2 -->
+					<option value="12">持仓成本控制</option>
+					<option value="13">资产类别市值控制</option>
+					<option value="14">交易额度控制</option>
+					<option value="15">执行价格控制</option>
+					<option value="16">盈亏额度控制</option>
+					<option value="18">同向反向控制</option>
+					<option value="4">证券买卖控制</option>
+				</select>
+			</div>
+			<div class="content">
+				<span>机&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;构</span>
+				<select class="select_inst">
+					<option value="">全部</option>
+				</select>
+			</div>
+			<div class="content">
+				<span>产&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;品</span>
+				<select class="select_product">
+					<option value="">全部</option>
+				</select>
+			</div>
+			<div class="content">
+				<span>账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号</span>
+				<select class="select_account">
+					<option value="">全部</option>
+				</select>
+			</div>
+			<div class="content">
+				<span>标准价格</span>
+				<select class="select_price">
+					<option value="">全部</option>
+				</select>
+			</div>
+			<div class="content">
+				<span>控制对象</span>
+				<select class="select_object">
+					<option value="">全部</option>
+				</select>
+			</div>
+			<div class="content">
+				<span>细分对象</span>
+				<select class="select_sub_object">
+					<option value="">全部</option>
+				</select>
+			</div>
+			<div class="content">
+				<span>控制维度</span>
+				<select class="select_dimesion">
+					<option value="">全部</option>
+				</select>
+			</div>
+			<div class="content">
+				<span>触警操作</span>
+				<select class="select_operate">
+					<option value="">全部</option>
+				</select>
+			</div>
+			<div class="content">
+				<span>控制方向</span>
+				<select class="select_direction">
+					<option value="">全部</option>
+				</select>
+			</div>
+			<div class="content">
+				<span>盈亏类别</span>
+				<select class="select_profit">
+					<option value="">全部</option>
+				</select>
+			</div>
+			<div class="content select_filter">
+				<a href="#" class="btn-even" id="riskFilter">筛选</a>
+				<a href="#" class="btn-even" id="riskExport">导出</a>
+			</div>
+		</div>
+		<div id="test">
+			<table id="riskAllRecode" data-options="toolbar : '#riskBar'"></table>
+			<div id="riskBar">
+				<a href="#" class="easyui-linkbutton btn-even" id="refresh"  data-options="iconCls:'icon-reload'">刷新</a>
+				<span id="updatetime"></span>
+			</div>
+		</div>
+	</div>
+	<div class="risk-tip">
+		暂无数据
+	</div>
+	<div id="loading" class="loading">
+		<div class="loading-tip">
+			数据正在加载中...
+		</div>
+	</div>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../js/riskAllSet.js"></script>
+</body>
+</html>
